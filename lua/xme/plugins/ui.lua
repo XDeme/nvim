@@ -1,3 +1,5 @@
+local icons = require("xme.icons")
+
 return {
     {
         "nvim-neo-tree/neo-tree.nvim",
@@ -44,19 +46,7 @@ return {
                         highlight = "NeoTreeModified",
                     },
                     git_status = {
-                        symbols = {
-                            -- Change type
-                            added     = "✚", -- or "✚", but this is redundant info if you use git_status_colors on the name
-                            modified  = "M", -- or "", but this is redundant info if you use git_status_colors on the name
-                            deleted   = "✖", -- this can only be used in the git_status source
-                            renamed   = "󰁕", -- this can only be used in the git_status source
-                            -- Status type
-                            untracked = "",
-                            ignored   = "",
-                            unstaged  = "󰄱",
-                            staged    = "",
-                            conflict  = "",
-                        },
+                        symbols = icons.git,
                     },
                 },
                 window = {
@@ -81,5 +71,22 @@ return {
                 }
             })
         end
-    }
+    },
+    {
+        "lewis6991/gitsigns.nvim",
+        event = { "BufReadPre", "BufNewFile" },
+        config = function()
+            local git = require("gitsigns")
+            vim.keymap.set("n", "<leader>gd", function() git.diffthis() end)
+            git.setup({
+                current_line_blame = true,
+                current_line_blame_opts = {
+                    virt_text = true,
+                    virt_text_pos = "eol", -- "eol" | 'overlay' | 'right_align'
+                    delay = 1000,
+                    ignore_whitespace = false,
+                },
+            })
+        end
+    },
 }
