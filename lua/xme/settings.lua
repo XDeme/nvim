@@ -1,10 +1,9 @@
 vim.opt.smartindent = true
 
 vim.opt.expandtab = true -- Convert Tab to spaces
-vim.opt.shiftwidth = 4 -- Number of spaces inserted each indent 
-vim.opt.tabstop = 4 -- Insert 4 Spaces for a tab
+vim.opt.shiftwidth = 4   -- Number of spaces inserted each indent
+vim.opt.tabstop = 4      -- Insert 4 Spaces for a tab
 vim.opt.softtabstop = 4
-
 
 vim.opt.cursorline = true
 vim.opt.relativenumber = true

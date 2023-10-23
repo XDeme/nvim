@@ -31,18 +31,32 @@ return {
 
         config = function()
             local lsp_zero = require("lsp-zero")
-            local cmp = require("cmp")
-
+            local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
             lsp_zero.on_attach(function(client, bufnr)
                 -- see :help lsp-zero-keybindings
                 -- to learn the available actions
-                local opts = {buffer = bufnr, remap = false}
+                local opts = { buffer = bufnr, remap = false }
+
+                if client.supports_method("textDocument/formatting") then
+                    vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+                    vim.api.nvim_create_autocmd("BufWritePre", {
+                        group = augroup,
+                        buffer = bufnr,
+                        callback = function()
+                            -- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
+                            -- on later neovim version, you should use vim.lsp.buf.format({ async = false }) instead
+                            vim.lsp.buf.format({ async = false })
+                        end,
+                    })
+                end
+                vim.api.nvim_set_current_dir(client.config.root_dir)
 
                 vim.keymap.set("n", "gD", function() vim.lsp.buf.declaration() end, opts)
                 vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
                 vim.keymap.set("n", "gr", function() vim.lsp.buf.references() end, opts)
                 vim.keymap.set("n", "<C-Space>", function() vim.lsp.buf.hover() end, opts)
-                vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
+                vim.keymap.set("n", "<F2>", function() vim.lsp.buf.rename() end, opts)
+                vim.keymap.set("n", "<leader>ca", function() vim.lsp.buf.code_action() end, opts)
             end)
 
             vim.diagnostic.config({
@@ -50,47 +64,7 @@ return {
                 update_in_insert = true
             })
 
-            cmp.setup({
-                completion = { completeopt = "menu,menuone,noinsert" },
-                source = {
-                    { name = "nvim_lsp" },
-                    { name = "nvim_lsp_signature_help" },
-                    { name = "nvim_lua" },
-                    { name = "luasnip" },
-                    { name = "buffer" },
-                    { name = "path" },
-                },
-                snippet = {
-                    expand = function(args)
-                        require("luasnip").lsp_expand(args.body)
-                    end
-                },
-                window = {
-                    completion = cmp.config.window.bordered(),
-                    documentation = cmp.config.window.bordered(),
-                    scrollbar = true,
-                },
-                mapping = cmp.mapping.preset.insert({
-                    ["<C-Space>"] = cmp.mapping.complete(),
-                    ["<C-e>"] = cmp.mapping.abort(),
-                    ["<Tab>"] = cmp.mapping(function(fallback)
-                        if cmp.visible() then
-                            cmp.confirm({ select = true })
-                        elseif require("luasnip").expand_or_jumpable() then
-                            require("luasnip").expand_or_jump()
-                        else
-                            fallback()
-                        end
-                    end, { "i", "s" }),
-                    ["<Esc>"] = cmp.mapping(function(fallback)
-                        require("luasnip").unlink_current()
-                        fallback()
-                    end)
-                }),
-                experimental = {
-                    ghost_text = true,
-                }
-            })
+            require("xme.config.cmp")
 
             local capabilities = vim.lsp.protocol.make_client_capabilities()
             capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
