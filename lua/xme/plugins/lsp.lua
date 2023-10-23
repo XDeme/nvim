@@ -49,6 +49,7 @@ return {
                         end,
                     })
                 end
+                vim.lsp.inlay_hint(0, true)
                 vim.api.nvim_set_current_dir(client.config.root_dir)
 
                 vim.keymap.set("n", "gD", function() vim.lsp.buf.declaration() end, opts)

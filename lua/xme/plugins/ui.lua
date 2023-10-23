@@ -67,8 +67,10 @@ return {
                         hide_dotfiles = false,
                         hide_gitignored = false,
                         hide_hidden = true,
-                    }
-                }
+                    },
+                    grou_empty_dirs = true,
+                },
+                async_directory_scan = "always",
             })
         end
     },
@@ -89,4 +91,56 @@ return {
             })
         end
     },
+    {
+        "akinsho/bufferline.nvim",
+        event = { "BufReadPost", "BufNewFile" },
+        dependencies = {
+            {
+                "moll/vim-bbye",
+                event = { "BufRead" }
+            }
+        },
+        config = function()
+            local bufferline = require("bufferline")
+            vim.keymap.set("n", "<leader>d", "<cmd>Bdelete!<CR>")
+            vim.keymap.set("n", "<A-Left>", "<cmd>BufferLineCyclePrev<CR>")
+            vim.keymap.set("n", "<A-Right>", "<cmd>BufferLineCycleNext<CR>")
+            vim.keymap.set("n", "<leader>1", "<cmd>BufferLineGoToBuffer 1<CR>")
+            vim.keymap.set("n", "<leader>2", "<cmd>BufferLineGoToBuffer 2<CR>")
+            vim.keymap.set("n", "<leader>3", "<cmd>BufferLineGoToBuffer 3<CR>")
+            vim.keymap.set("n", "<leader>4", "<cmd>BufferLineGoToBuffer 4<CR>")
+            vim.keymap.set("n", "<leader>5", "<cmd>BufferLineGoToBuffer 5<CR>")
+            vim.keymap.set("n", "<leader>6", "<cmd>BufferLineGoToBuffer 6<CR>")
+            vim.keymap.set("n", "<leader>7", "<cmd>BufferLineGoToBuffer 7<CR>")
+            vim.keymap.set("n", "<leader>8", "<cmd>BufferLineGoToBuffer 8<CR>")
+            vim.keymap.set("n", "<leader>9", "<cmd>BufferLineGoToBuffer 9<CR>")
+            bufferline.setup({
+                options = {
+                    diagnostics = "nvim_lsp",
+                    indicator = {
+                        style = "underline",
+                    },
+                    diagnostics_indicator = function(count, level, errors, ctx)
+                        if count > 9 then
+                            return "9+"
+                        end
+                        return tostring(count)
+                    end,
+                    close_command = "Bdelete! %d",
+                    offsets = {
+                        {
+                            filetype = "neo-tree",
+                            text = "Explorer",
+                            text_align = "center",
+                        },
+                    },
+                    hover = {
+                        enabled = true,
+                        delay = 0,
+                        reveal = { "close" },
+                    }
+                },
+            })
+        end
+    }
 }
