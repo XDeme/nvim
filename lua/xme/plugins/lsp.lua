@@ -1,12 +1,8 @@
 return {
     {
-        "L3MON4D3/LuaSnip",
-        dependencies = {
-            "rafamadriz/friendly-snippets",
-        },
-        config = function()
-            require("luasnip.loaders.from_vscode").lazy_load()
-            require("luasnip.loaders.from_snipmate").lazy_load()
+        "folke/neodev.nvim",
+        init = function()
+            require("neodev").setup({})
         end
     },
     {
@@ -16,7 +12,6 @@ return {
             "williamboman/mason.nvim",
             "williamboman/mason-lspconfig.nvim",
             "neovim/nvim-lspconfig",
-
             {
                 "hrsh7th/nvim-cmp", -- Completion
                 event = { "InsertEnter", "CmdlineEnter" },
@@ -28,14 +23,12 @@ return {
             "hrsh7th/cmp-path",
             "saadparwaizi/cmp_luasnip",
         },
-
         config = function()
             local lsp_zero = require("lsp-zero")
             local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
             lsp_zero.on_attach(function(client, bufnr)
                 -- see :help lsp-zero-keybindings
                 -- to learn the available actions
-                local opts = { buffer = bufnr, remap = false }
 
                 if client.supports_method("textDocument/formatting") then
                     vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
@@ -52,18 +45,10 @@ return {
                 vim.lsp.inlay_hint(0, true)
                 vim.api.nvim_set_current_dir(client.config.root_dir)
 
-                vim.keymap.set("n", "gD", function() vim.lsp.buf.declaration() end, opts)
-                vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
-                vim.keymap.set("n", "gr", function() vim.lsp.buf.references() end, opts)
-                vim.keymap.set("n", "<C-Space>", function() vim.lsp.buf.hover() end, opts)
-                vim.keymap.set("n", "<F2>", function() vim.lsp.buf.rename() end, opts)
-                vim.keymap.set("n", "<leader>ca", function() vim.lsp.buf.code_action() end, opts)
+                require("xme.config.lsp.keymaps")(client, bufnr)
             end)
 
-            vim.diagnostic.config({
-                virtual_text = true,
-                update_in_insert = true
-            })
+            vim.diagnostic.config(require("xme.config.lsp.diagnostics").on)
 
             require("xme.config.cmp")
 
@@ -86,11 +71,4 @@ return {
             require("lsp_signature").setup({})
         end,
     },
-    {
-        "folke/neodev.nvim",
-        init = function()
-            require("neodev").setup({})
-        end
-    },
-
 }
