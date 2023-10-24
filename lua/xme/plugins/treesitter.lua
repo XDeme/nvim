@@ -7,7 +7,17 @@ return {
         config = function()
             local treesitter = require("nvim-treesitter.configs")
             treesitter.setup({
-                ensure_installed = {},
+                ensure_installed = {
+                    -- Web
+                    "html",
+                    "css",
+                    "javascript",
+                    "typescript",
+
+                    "c",
+                    "cpp",
+                    "cmake",
+                },
                 highlight = {
                     enable = true
                 },

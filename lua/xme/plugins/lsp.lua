@@ -76,7 +76,10 @@ return {
                 handlers = {
                     lsp_zero.default_setup,
                     clangd = function()
-                        require("lspconfig").clangd.setup(require("xme.config.lsp.clangd"))
+                        require("lspconfig").clangd.setup(require("xme.config.lsp.language_servers.clangd"))
+                    end,
+                    cmake = function()
+                        require("lspconfig").cmake.setup(require("xme.config.lsp.language_servers.cmake"))
                     end
                 },
             })

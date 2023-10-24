@@ -79,13 +79,12 @@ return {
         event = { "BufReadPre", "BufNewFile" },
         config = function()
             local git = require("gitsigns")
-            vim.keymap.set("n", "<leader>gd", function() git.diffthis() end)
             git.setup({
                 current_line_blame = true,
                 current_line_blame_opts = {
                     virt_text = true,
                     virt_text_pos = "eol", -- "eol" | 'overlay' | 'right_align'
-                    delay = 1000,
+                    delay = 500,
                     ignore_whitespace = false,
                 },
             })
@@ -142,5 +141,17 @@ return {
                 },
             })
         end
+    },
+    {
+        "nvim-lualine/lualine.nvim",
+        config = function()
+            local lualine = require("lualine")
+            lualine.setup({
+                options = {
+                    theme = 'auto',
+                    globalstatus = true,
+                }
+            })
+        end,
     }
 }
