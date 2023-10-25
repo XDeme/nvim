@@ -1,6 +1,6 @@
 local telescope = require("telescope.builtin")
 
-return function(client, bufnr)
+return function(_, bufnr)
     local opts = { buffer = bufnr, remap = false }
 
     vim.keymap.set("n", "gD", function() vim.lsp.buf.declaration() end, opts)

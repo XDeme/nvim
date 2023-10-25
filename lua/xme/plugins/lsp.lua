@@ -19,7 +19,6 @@ return {
             "hrsh7th/cmp-buffer",
             "hrsh7th/cmp-nvim-lua",
             "hrsh7th/cmp-nvim-lsp",
-            --"hrsh7th/cmp-nvim-lsp-signature-help",
             "hrsh7th/cmp-path",
             "saadparwaizi/cmp_luasnip",
         },
@@ -65,6 +64,9 @@ return {
                     end,
                     cmake = function()
                         require("lspconfig").cmake.setup(require("xme.config.lsp.language_servers.cmake"))
+                    end,
+                    tsserver = function()
+                        require("lspconfig").tsserver.setup(require("xme.config.lsp.language_servers.tsserver"))
                     end
                 },
             })

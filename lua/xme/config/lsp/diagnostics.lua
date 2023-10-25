@@ -1,4 +1,5 @@
 local diagnostics = {
+    enabled = true,
     on = {
         underline = true,
         virtual_text = true,
@@ -17,15 +18,14 @@ local diagnostics = {
         update_in_insert = false,
     }
 }
-vim.g.diagnostics_enabled = true
 
 vim.api.nvim_create_user_command("ToggleDiagnostic", function()
-    if vim.g.diagnostics_enabled then
+    if diagnostics.enabled then
         vim.diagnostic.config(diagnostics.off)
-        vim.g.diagnostics_enabled = false
+        diagnostics.enabled = false
     else
         vim.diagnostic.config(diagnostics.on)
-        vim.g.diagnostics_enabled = true
+        diagnostics.enabled = true
     end
 end, { nargs = 0 })
 

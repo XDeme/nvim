@@ -1,5 +1,6 @@
 require("xme.settings")
 require("xme.lazy")
+require("xme.cmds")
 require("xme.auto_cmds")
 
 if vim.fn.argc() == 1 then

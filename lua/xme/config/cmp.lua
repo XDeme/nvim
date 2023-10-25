@@ -1,13 +1,14 @@
 local cmp = require("cmp")
 
 cmp.setup({
+    preselect = 'item',
     completion = { completeopt = "menu,menuone,noinsert" },
     source = {
         { name = "nvim_lsp" },
         { name = "nvim_lua" },
         { name = "luasnip" },
-        { name = "buffer" },
         { name = "path" },
+        { name = "buffer",  keyword_lenght = 5 },
     },
     snippet = {
         expand = function(args)
@@ -17,7 +18,6 @@ cmp.setup({
     window = {
         completion = cmp.config.window.bordered(),
         documentation = cmp.config.window.bordered(),
-        scrollbar = true,
     },
     mapping = cmp.mapping.preset.insert({
         ["<C-Space>"] = cmp.mapping.complete(),
