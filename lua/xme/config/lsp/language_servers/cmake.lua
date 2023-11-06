@@ -1,3 +1,3 @@
 return {
-    filetypes = { "cmake", "CMakeLists.txt" }
+    filetypes = { "cmake", "CMakeLists.txt" },
 }

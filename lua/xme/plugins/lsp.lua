@@ -14,17 +14,20 @@ return {
             "neovim/nvim-lspconfig",
             {
                 "hrsh7th/nvim-cmp", -- Completion
+                version = false,
                 event = { "InsertEnter", "CmdlineEnter" },
             },
             "hrsh7th/cmp-buffer",
             "hrsh7th/cmp-nvim-lua",
             "hrsh7th/cmp-nvim-lsp",
             "hrsh7th/cmp-path",
-            "saadparwaizi/cmp_luasnip",
+            "saadparwaiz1/cmp_luasnip",
         },
         config = function()
             local lsp_zero = require("lsp-zero")
             local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+
+            --- @param client lsp.Client
             lsp_zero.on_attach(function(client, bufnr)
                 -- see :help lsp-zero-keybindings
                 -- to learn the available actions
@@ -41,7 +44,9 @@ return {
                         end,
                     })
                 end
-                vim.lsp.inlay_hint(0, true)
+                if client.supports_method("textDocument/inlayHint") then
+                    vim.lsp.inlay_hint(bufnr, true)
+                end
                 vim.api.nvim_set_current_dir(client.config.root_dir)
 
                 require("xme.config.lsp.keymaps")(client, bufnr)
@@ -67,6 +72,9 @@ return {
                     end,
                     tsserver = function()
                         require("lspconfig").tsserver.setup(require("xme.config.lsp.language_servers.tsserver"))
+                    end,
+                    lua_ls = function()
+                        require("lspconfig").lua_ls.setup(require("xme.config.lsp.language_servers.lua_ls"))
                     end
                 },
             })

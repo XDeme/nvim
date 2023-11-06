@@ -9,8 +9,6 @@ if vim.fn.argc() == 1 then
         local str = require("lspconfig").util.find_git_ancestor(vim.fn.argv(0))
         if str ~= nil then
             vim.api.nvim_set_current_dir(str)
-        else
-            vim.api.nvim_set_current_dir(vim.fn.argv(0))
         end
     end
 end

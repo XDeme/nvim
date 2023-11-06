@@ -70,7 +70,6 @@ return {
                     },
                     grou_empty_dirs = true,
                 },
-                async_directory_scan = "always",
             })
         end
     },
@@ -135,7 +134,7 @@ return {
                     },
                     hover = {
                         enabled = true,
-                        delay = 0,
+                        delay = 200,
                         reveal = { "close" },
                     }
                 },
@@ -153,5 +152,20 @@ return {
                 }
             })
         end,
-    }
+    },
+    {
+        "stevearc/dressing.nvim",
+        dependencies = {
+        },
+        config = function()
+            local dressing = require("dressing")
+            dressing.setup({})
+        end
+    },
+    {
+        "rcarriga/nvim-notify",
+        config = function()
+            vim.notify = require("notify")
+        end
+    },
 }

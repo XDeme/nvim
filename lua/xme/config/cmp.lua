@@ -8,7 +8,7 @@ cmp.setup({
         { name = "nvim_lua" },
         { name = "luasnip" },
         { name = "path" },
-        { name = "buffer",  keyword_lenght = 5 },
+        { name = "buffer",  keyword_length = 5 },
     },
     snippet = {
         expand = function(args)
@@ -36,7 +36,4 @@ cmp.setup({
             fallback()
         end)
     }),
-    experimental = {
-        ghost_text = true,
-    }
 })

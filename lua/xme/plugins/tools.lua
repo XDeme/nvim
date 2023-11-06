@@ -8,5 +8,5 @@ return {
                 open_mapping = [[<C-t>]]
             })
         end
-    }
+    },
 }

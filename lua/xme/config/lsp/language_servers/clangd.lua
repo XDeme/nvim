@@ -6,6 +6,6 @@ return {
         "--background-index",
         "--completion-style=bundled",
         "--header-insertion=never",
-        "--function-arg-placeholders"
+        "--function-arg-placeholders",
     },
 }

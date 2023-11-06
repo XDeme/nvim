@@ -1,12 +1,12 @@
 return {
     {
+        "nvim-lua/plenary.nvim",
+        lazy = false,
+    },
+    {
         "nvim-telescope/telescope.nvim",
         version = false,
         dependencies = {
-            {
-                "nvim-lua/plenary.nvim",
-                lazy = true,
-            },
             {
                 "MunifTanjim/nui.nvim",
                 lazy = true,
@@ -32,6 +32,49 @@ return {
                     }
                 }
             })
+        end
+    },
+    {
+        "folke/persistence.nvim",
+        event = { "BufReadPre" },
+        keys = {
+            {
+                "<leader>ss",
+                function()
+                    require("persistence").load()
+                end,
+                desc = "Restore Session",
+            },
+            {
+                "<leader>sl",
+                function()
+                    require("persistence").load({ last = true })
+                end,
+                desc = "Restore Last Session",
+            }
+        },
+        config = function()
+            local persistence = require("persistence")
+            vim.keymap.set("n", "<leader>sr", function()
+                require("persistence").load()
+            end, { remap = true })
+            persistence.setup({
+                options = { "buffers", "curdir", "winsize", "terminal" }
+            })
+        end
+    },
+    {
+        "folke/which-key.nvim",
+        config = function()
+            local which = require("which-key")
+            which.setup({
+
+            })
+            local keymaps = {
+                ["<leader>g"] = "Git",
+                ["<leader>s"] = "Session",
+            }
+            which.register(keymaps)
         end
     }
 }
