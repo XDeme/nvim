@@ -11,6 +11,21 @@ return {
         end
     },
     {
+        "hrsh7th/nvim-cmp", -- Completion
+        version = false,
+        dependencies = {
+            "hrsh7th/cmp-buffer",
+            "hrsh7th/cmp-nvim-lua",
+            "hrsh7th/cmp-nvim-lsp",
+            "hrsh7th/cmp-path",
+            "saadparwaiz1/cmp_luasnip",
+        },
+        event = { "InsertEnter", "CmdlineEnter" },
+        config = function()
+            require("xme.config.cmp")
+        end
+    },
+    {
         "windwp/nvim-autopairs",
         event = "InsertEnter",
         config = function()
@@ -21,10 +36,4 @@ return {
         "ray-x/lsp_signature.nvim",
         event = { "InsertEnter" },
     },
-    --[[
-    {
-        "glepnir/lspsaga.nvim",
-        event = "VeryLazy",
-    },
---]]
 }
