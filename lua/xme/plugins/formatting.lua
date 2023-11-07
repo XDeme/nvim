@@ -8,15 +8,15 @@ return {
 			conform.setup({
 				formatters_by_ft = {
 					lua = { "stylua" },
-					javascript = { "prettier" },
-					javascriptreact = { "prettier" },
-					typescript = { "prettier" },
-					typescriptreact = { "prettier" },
-					vue = { "prettier" },
-					css = { "prettier" },
-					scss = { "prettier" },
-					html = { "prettier" },
-					json = { "prettier" },
+					javascript = { { "prettierd", "prettier" } },
+					javascriptreact = { { "prettierd", "prettier" } },
+					typescript = { { "prettierd", "prettier" } },
+					typescriptreact = { { "prettierd", "prettier" } },
+					vue = { { "prettierd", "prettier" } },
+					css = { { "prettierd", "prettier" } },
+					scss = { { "prettierd", "prettier" } },
+					html = { { "prettierd", "prettier" } },
+					json = { { "prettierd", "prettier" } },
 				},
 				format_on_save = function(bufnr)
 					if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
@@ -30,7 +30,7 @@ return {
 							slow_format_filetypes[vim.bo[bufnr].filetype] = true
 						end
 					end
-					return { timeout = 200, lsp_fallback = true }, on_format
+					return { timeout_ms = 200, lsp_fallback = true }, on_format
 				end,
 				format_after_save = function(bufnr)
 					if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
@@ -56,6 +56,9 @@ return {
 			})
 
 			vim.keymap.set("n", "<C-s>", vim.cmd.w, {})
+			vim.keymap.set("n", "<leader>lf", function()
+				require("conform").format({ async = true })
+			end)
 		end,
 	},
 }
