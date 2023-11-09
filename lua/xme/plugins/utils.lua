@@ -4,34 +4,8 @@ return {
 		lazy = false,
 	},
 	{
-		"nvim-telescope/telescope.nvim",
-		version = false,
-		dependencies = {
-			{
-				"MunifTanjim/nui.nvim",
-				lazy = true,
-			},
-		},
-		config = function()
-			local telescope = require("telescope")
-			local builtin = require("telescope.builtin")
-			vim.keymap.set("n", "<leader>ff", builtin.find_files, {})
-			vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})
-			telescope.setup({
-				defaults = {
-					file_ignore_patterns = {
-						".git/",
-						".idea/",
-						".vscode/",
-						".github/",
-						".gradle/",
-						"build/",
-						"target/",
-						"node_modules/",
-					},
-				},
-			})
-		end,
+		"MunifTanjim/nui.nvim",
+		lazy = true,
 	},
 	{
 		"folke/persistence.nvim",
@@ -67,6 +41,7 @@ return {
 			local keymaps = {
 				["<leader>g"] = "Git",
 				["<leader>q"] = "Session",
+				["<C-s>"] = "Save file",
 			}
 			which.register(keymaps)
 		end,

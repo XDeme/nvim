@@ -2,22 +2,9 @@ return {
 	{
 		"stevearc/conform.nvim",
 		version = false,
-		config = function()
-			local conform = require("conform")
+		opts = function()
 			local slow_format_filetypes = {}
-			conform.setup({
-				formatters_by_ft = {
-					lua = { "stylua" },
-					javascript = { { "prettierd", "prettier" } },
-					javascriptreact = { { "prettierd", "prettier" } },
-					typescript = { { "prettierd", "prettier" } },
-					typescriptreact = { { "prettierd", "prettier" } },
-					vue = { { "prettierd", "prettier" } },
-					css = { { "prettierd", "prettier" } },
-					scss = { { "prettierd", "prettier" } },
-					html = { { "prettierd", "prettier" } },
-					json = { { "prettierd", "prettier" } },
-				},
+			return {
 				format_on_save = function(bufnr)
 					if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
 						return
@@ -41,7 +28,11 @@ return {
 					end
 					return { lsp_fallback = true }
 				end,
-			})
+			}
+		end,
+		config = function(_, opts)
+			local conform = require("conform")
+			conform.setup(opts)
 
 			vim.api.nvim_create_user_command("ToggleAutoFormat", function(args)
 				if args.bang then
@@ -55,7 +46,7 @@ return {
 				bang = true,
 			})
 
-			vim.keymap.set("n", "<C-s>", vim.cmd.w, {})
+			vim.keymap.set({ "n", "i" }, "<C-s>", vim.cmd.w, {})
 			vim.keymap.set("n", "<leader>lf", function()
 				require("conform").format({ async = true })
 			end)

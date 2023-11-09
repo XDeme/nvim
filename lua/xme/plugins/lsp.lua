@@ -30,7 +30,7 @@ return {
 
 			require("mason").setup({})
 			require("mason-lspconfig").setup({
-				ensure_installed = { "tsserver" },
+				ensure_installed = {},
 				handlers = {
 					lsp_zero.default_setup,
 					clangd = function()
@@ -39,15 +39,11 @@ return {
 					cmake = function()
 						require("lspconfig").cmake.setup(require("xme.config.lsp.language_servers.cmake"))
 					end,
-					tsserver = function()
-						require("lspconfig").tsserver.setup(require("xme.config.lsp.language_servers.tsserver"))
-					end,
 					lua_ls = function()
 						require("lspconfig").lua_ls.setup(require("xme.config.lsp.language_servers.lua_ls"))
 					end,
 				},
 			})
-			require("lsp_signature").setup({})
 		end,
 	},
 }

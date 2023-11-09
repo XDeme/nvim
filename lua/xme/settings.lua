@@ -23,3 +23,7 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 vim.keymap.set("n", "<leader>pv", "<cmd>Explore<CR>")
+
+if vim.g.neovide then
+	vim.g.neovide_transparency = 0.9
+end
