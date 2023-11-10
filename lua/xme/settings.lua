@@ -22,7 +22,9 @@ vim.opt.smoothscroll = true
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-vim.keymap.set("n", "<leader>pv", "<cmd>Explore<CR>")
+vim.keymap.set("n", "<leader>pv", vim.cmd.Explore)
+
+vim.keymap.set({ "n", "i" }, "<C-s>", vim.cmd.w, {})
 
 if vim.g.neovide then
 	vim.g.neovide_transparency = 0.9

@@ -1,11 +1,5 @@
 return {
 	{
-		"folke/neodev.nvim",
-		init = function()
-			require("neodev").setup({})
-		end,
-	},
-	{
 		"VonHeikemen/lsp-zero.nvim",
 		branch = "v3.x",
 		dependencies = {
@@ -13,7 +7,7 @@ return {
 			"williamboman/mason-lspconfig.nvim",
 			"neovim/nvim-lspconfig",
 		},
-		config = function()
+		config = function(_, opts)
 			local lsp_zero = require("lsp-zero")
 
 			--- @param client lsp.Client
@@ -28,20 +22,16 @@ return {
 
 			vim.diagnostic.config(require("xme.config.lsp.diagnostics").on)
 
+			local servers = opts.servers
+			for server, config in pairs(servers) do
+				lsp_zero.configure(server, config)
+			end
+
 			require("mason").setup({})
 			require("mason-lspconfig").setup({
 				ensure_installed = {},
 				handlers = {
 					lsp_zero.default_setup,
-					clangd = function()
-						require("lspconfig").clangd.setup(require("xme.config.lsp.language_servers.clangd"))
-					end,
-					cmake = function()
-						require("lspconfig").cmake.setup(require("xme.config.lsp.language_servers.cmake"))
-					end,
-					lua_ls = function()
-						require("lspconfig").lua_ls.setup(require("xme.config.lsp.language_servers.lua_ls"))
-					end,
 				},
 			})
 		end,

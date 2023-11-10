@@ -22,6 +22,7 @@ return {
 					"%.class",
 					"%.exe",
 					"%.dll",
+					"%.nls",
 					"%.tar.gz",
 					"%.tar",
 					"%.rar",

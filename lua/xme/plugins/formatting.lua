@@ -46,7 +46,6 @@ return {
 				bang = true,
 			})
 
-			vim.keymap.set({ "n", "i" }, "<C-s>", vim.cmd.w, {})
 			vim.keymap.set("n", "<leader>lf", function()
 				require("conform").format({ async = true })
 			end)

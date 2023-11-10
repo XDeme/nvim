@@ -15,5 +15,6 @@ require("lazy").setup({
 	spec = {
 		{ import = "xme.plugins" },
 		{ import = "xme.plugins.extras.formatting" },
+		{ import = "xme.plugins.extras.lsp" },
 	},
 })
