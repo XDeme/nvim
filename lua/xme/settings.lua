@@ -19,6 +19,8 @@ vim.opt.updatetime = 50
 vim.opt.scrolloff = 8
 vim.opt.smoothscroll = true
 
+vim.opt.grepprg = "rp --vimgrep"
+
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
@@ -27,5 +29,14 @@ vim.keymap.set("n", "<leader>pv", vim.cmd.Explore)
 vim.keymap.set({ "n", "i" }, "<C-s>", vim.cmd.w, {})
 
 if vim.g.neovide then
+	vim.opt.guifont = "Fira Code:h10"
 	vim.g.neovide_transparency = 0.9
+	vim.g.neovide_scale_factor = 1 * (1 / 1.1)
+
+	vim.keymap.set("n", "<C-=>", function()
+		vim.g.neovide_scale_factor = vim.g.neovide_scale_factor * 1.1
+	end)
+	vim.keymap.set("n", "<C-->", function()
+		vim.g.neovide_scale_factor = vim.g.neovide_scale_factor * (1 / 1.1)
+	end)
 end

@@ -33,4 +33,22 @@ return {
 			require("nvim-autopairs").setup({})
 		end,
 	},
+	{
+		"numToStr/Comment.nvim",
+		version = false,
+		opts = {
+			toggler = {
+				line = "<C-/>",
+				block = nil,
+			},
+			opleader = {
+				line = "<C-/>",
+				block = nil,
+			},
+		},
+		config = function(_, opts)
+			local comment = require("Comment")
+			comment.setup(opts)
+		end,
+	},
 }

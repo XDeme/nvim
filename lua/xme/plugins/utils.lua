@@ -41,6 +41,7 @@ return {
 			local keymaps = {
 				["<leader>g"] = "Git",
 				["<leader>q"] = "Session",
+				["<leader>f"] = "Find",
 				["<C-s>"] = "Save file",
 			}
 			which.register(keymaps)

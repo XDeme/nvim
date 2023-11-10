@@ -160,7 +160,7 @@ return {
 			vim.notify = require("notify")
 			require("notify").setup({
 				background_colour = "#222222",
-				timeout = 1500,
+				timeout = 800,
 				on_open = function(win)
 					vim.api.nvim_win_set_config(win, { focusable = false })
 				end,
