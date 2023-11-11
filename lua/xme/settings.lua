@@ -1,3 +1,6 @@
+--- @type Version
+---
+local version = vim.version()
 vim.opt.smartindent = true
 
 vim.opt.expandtab = true -- Convert Tab to spaces
@@ -17,7 +20,10 @@ vim.opt.completeopt = "menu,menuone,noselect"
 vim.opt.updatetime = 50
 
 vim.opt.scrolloff = 8
-vim.opt.smoothscroll = true
+
+if version.minor >= 10 then
+	vim.opt.smoothscroll = true
+end
 
 vim.opt.grepprg = "rp --vimgrep"
 

@@ -1,3 +1,6 @@
+--- @type Version
+local version = vim.version()
+
 return {
 	{
 		"VonHeikemen/lsp-zero.nvim",
@@ -12,8 +15,10 @@ return {
 
 			--- @param client lsp.Client
 			lsp_zero.on_attach(function(client, bufnr)
-				if client.supports_method("textDocument/inlayHint") then
-					vim.lsp.inlay_hint(bufnr, true)
+				if version >= 10 then
+					if client.supports_method("textDocument/inlayHint") then
+						vim.lsp.inlay_hint(bufnr, true)
+					end
 				end
 				vim.api.nvim_set_current_dir(client.config.root_dir)
 
@@ -29,7 +34,7 @@ return {
 
 			require("mason").setup({})
 			require("mason-lspconfig").setup({
-				ensure_installed = {},
+				ensure_installed = { "prettierd" },
 				handlers = {
 					lsp_zero.default_setup,
 				},
