@@ -1,13 +1,16 @@
 local cmp = require("cmp")
+local default = require("cmp.config.default")()
 
 cmp.setup({
 	preselect = "item",
 	completion = { completeopt = "menu,menuone,noinsert" },
+
+	--- @type cmp.SourceConfig[]
 	source = {
-		{ name = "nvim_lsp", priority = 10, group_index = 1, max_item_count = 30 },
-		{ name = "luasnip", max_item_count = 10 },
-		{ name = "path", max_item_count = 8 },
-		{ name = "buffer", keyword_length = 5 },
+		{ name = "nvim_lsp", priority = 8, max_item_count = 30 },
+		{ name = "luasnip", priority = 7, max_item_count = 10 },
+		{ name = "path", priority = 7, max_item_count = 8 },
+		{ name = "buffer", priority = 7, keyword_length = 5 },
 	},
 	snippet = {
 		expand = function(args)
@@ -65,4 +68,6 @@ cmp.setup({
 	performance = {
 		max_view_entries = 80,
 	},
+	experimental = { ghost_text = true },
+	sorting = default.sorting,
 })

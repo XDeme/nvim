@@ -4,6 +4,7 @@ return {
 		branch = "v3.x",
 		opts = {
 			servers = {
+				--- @type lsp.ClientConfig
 				clangd = {
 					cmd = {
 						"clangd",

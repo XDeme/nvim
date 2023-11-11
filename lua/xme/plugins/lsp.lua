@@ -17,10 +17,12 @@ return {
 			lsp_zero.on_attach(function(client, bufnr)
 				if version.minor >= 10 then
 					if client.supports_method("textDocument/inlayHint") then
-						vim.lsp.inlay_hint(bufnr, true)
+						vim.lsp.inlay_hint(bufnr, false)
 					end
 				end
-				vim.api.nvim_set_current_dir(client.config.root_dir)
+				if client.config.root_dir then
+					vim.api.nvim_set_current_dir(client.config.root_dir)
+				end
 
 				require("xme.config.lsp.keymaps")(client, bufnr)
 			end)

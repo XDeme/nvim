@@ -1,6 +1,6 @@
 --- @type Version
----
 local version = vim.version()
+
 vim.opt.smartindent = true
 
 vim.opt.expandtab = true -- Convert Tab to spaces
@@ -35,7 +35,6 @@ vim.keymap.set("n", "<leader>pv", vim.cmd.Explore)
 vim.keymap.set({ "n", "i" }, "<C-s>", vim.cmd.w, {})
 
 if vim.g.neovide then
-	vim.opt.guifont = "Fira Code:h10"
 	vim.g.neovide_transparency = 0.9
 	vim.g.neovide_scale_factor = 1 * (1 / 1.1)
 
