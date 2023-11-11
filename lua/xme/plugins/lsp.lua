@@ -15,7 +15,7 @@ return {
 
 			--- @param client lsp.Client
 			lsp_zero.on_attach(function(client, bufnr)
-				if version >= 10 then
+				if version.minor >= 10 then
 					if client.supports_method("textDocument/inlayHint") then
 						vim.lsp.inlay_hint(bufnr, true)
 					end
@@ -34,7 +34,7 @@ return {
 
 			require("mason").setup({})
 			require("mason-lspconfig").setup({
-				ensure_installed = { "prettierd" },
+				ensure_installed = {},
 				handlers = {
 					lsp_zero.default_setup,
 				},
