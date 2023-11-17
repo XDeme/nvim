@@ -4,9 +4,8 @@ local default = require("cmp.config.default")()
 cmp.setup({
 	preselect = "item",
 	completion = { completeopt = "menu,menuone,noinsert" },
-
 	--- @type cmp.SourceConfig[]
-	source = {
+	sources = {
 		{ name = "nvim_lsp", priority = 8, max_item_count = 30 },
 		{ name = "luasnip", priority = 7, max_item_count = 10 },
 		{ name = "path", priority = 7, max_item_count = 8 },

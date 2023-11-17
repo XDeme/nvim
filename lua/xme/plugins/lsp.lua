@@ -17,7 +17,7 @@ return {
 			lsp_zero.on_attach(function(client, bufnr)
 				if version.minor >= 10 then
 					if client.supports_method("textDocument/inlayHint") then
-						vim.lsp.inlay_hint(bufnr, false)
+						vim.lsp.inlay_hint(bufnr, true)
 					end
 				end
 				if client.config.root_dir then

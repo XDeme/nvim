@@ -14,9 +14,9 @@ return {
 		"hrsh7th/nvim-cmp", -- Completion
 		version = false,
 		dependencies = {
-			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-nvim-lua",
 			"hrsh7th/cmp-nvim-lsp",
+			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-path",
 			"saadparwaiz1/cmp_luasnip",
 			"roobert/tailwindcss-colorizer-cmp.nvim",
@@ -50,5 +50,17 @@ return {
 			local comment = require("Comment")
 			comment.setup(opts)
 		end,
+	},
+	{
+		"echasnovski/mini.surround",
+		version = false,
+		opts = {
+			mappings = {
+				add = "sa",
+				delete = "sd",
+				replace = "sr",
+			},
+			search_method = "cover_or_next",
+		},
 	},
 }

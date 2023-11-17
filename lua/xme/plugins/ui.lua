@@ -60,7 +60,7 @@ return {
 						hide_gitignored = false,
 						hide_hidden = true,
 					},
-					group_empty_dirs = true,
+					group_empty_dirs = false,
 					use_libuv_file_watcher = true,
 				},
 			})

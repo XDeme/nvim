@@ -27,6 +27,8 @@ end
 
 vim.opt.grepprg = "rp --vimgrep"
 
+vim.opt.mousemoveevent = true
+
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
@@ -37,6 +39,7 @@ vim.keymap.set({ "n", "i" }, "<C-s>", vim.cmd.w, {})
 if vim.g.neovide then
 	vim.g.neovide_transparency = 0.9
 	vim.g.neovide_scale_factor = 1 * (1 / 1.1)
+	vim.g.neovide_cursor_animation_length = 0.05
 
 	vim.keymap.set("n", "<C-=>", function()
 		vim.g.neovide_scale_factor = vim.g.neovide_scale_factor * 1.1

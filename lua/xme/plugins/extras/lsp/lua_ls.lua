@@ -2,7 +2,14 @@ return {
 	{
 		"folke/neodev.nvim",
 		init = function()
-			require("neodev").setup({})
+			require("neodev").setup({
+				library = {
+					enabled = true,
+					runtime = true,
+					plugins = true,
+					types = true,
+				},
+			})
 		end,
 	},
 	{
@@ -12,9 +19,7 @@ return {
 			servers = {
 				lua_ls = {
 					Lua = {
-						workspace = {
-							library = vim.api.nvim_get_runtime_file("*", true),
-						},
+						workspace = {},
 					},
 				},
 			},
