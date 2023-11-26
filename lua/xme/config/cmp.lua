@@ -1,3 +1,4 @@
+---@diagnostic disable: missing-fields
 local cmp = require("cmp")
 local default = require("cmp.config.default")()
 

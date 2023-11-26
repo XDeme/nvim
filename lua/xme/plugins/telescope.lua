@@ -46,13 +46,11 @@ return {
 			vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Find buffer" })
 
 			--- Git
+			vim.keymap.set("n", "<leader>gs", builtin.git_status, { desc = "Status" })
+			vim.keymap.set("n", "<leader>gf", builtin.git_files, { desc = "Files" })
 			vim.keymap.set("n", "<leader>gb", builtin.git_branches, { desc = "Checkout Branches" })
 			vim.keymap.set("n", "<leader>gc", builtin.git_commits, { desc = "Checkout Commits" })
 		end,
-	},
-	{
-		"nvim-telescope/telescope-ui-select.nvim",
-		version = false,
 	},
 	{
 		"nvim-telescope/telescope-fzf-native.nvim",
