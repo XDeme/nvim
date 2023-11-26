@@ -40,9 +40,14 @@ return {
 			local builtin = require("telescope.builtin")
 			telescope.setup(opts)
 			telescope.load_extension("fzf")
+			--- Find
 			vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Find files" })
 			vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Find text" })
 			vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Find buffer" })
+
+			--- Git
+			vim.keymap.set("n", "<leader>gb", builtin.git_branches, { desc = "Checkout Branches" })
+			vim.keymap.set("n", "<leader>gc", builtin.git_commits, { desc = "Checkout Commits" })
 		end,
 	},
 	{

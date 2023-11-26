@@ -8,7 +8,7 @@ return {
 				clangd = {
 					cmd = {
 						"clangd",
-						"-j=2",
+						"-j=3",
 						"--clang-tidy",
 						"--background-index",
 						"--completion-style=bundled",

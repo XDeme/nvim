@@ -9,7 +9,7 @@ cmp.setup({
 		{ name = "nvim_lsp", priority = 8, max_item_count = 30 },
 		{ name = "luasnip", priority = 7, max_item_count = 10 },
 		{ name = "path", priority = 7, max_item_count = 8 },
-		{ name = "buffer", priority = 7, keyword_length = 5 },
+		{ name = "buffer", priority = 7, keyword_length = 5, max_item_count = 20 },
 	},
 	snippet = {
 		expand = function(args)

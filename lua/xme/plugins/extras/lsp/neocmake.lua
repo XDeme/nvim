@@ -1,4 +1,3 @@
-local lspconfig = require("lspconfig.util")
 return {
 	{
 		"VonHeikemen/lsp-zero.nvim",
@@ -7,7 +6,6 @@ return {
 			servers = {
 				neocmake = {
 					filetypes = { "cmake", "CMakeLists.txt" },
-					root_dir = lspconfig.root_pattern(".git", "cmake", "CMakeLists.txt"),
 				},
 			},
 		},

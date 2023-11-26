@@ -16,6 +16,7 @@ vim.opt.swapfile = false
 vim.opt.termguicolors = true
 
 vim.opt.completeopt = "menu,menuone,noselect"
+vim.opt.cmdheight = 0
 
 vim.opt.updatetime = 50
 
@@ -28,6 +29,8 @@ end
 vim.opt.grepprg = "rp --vimgrep"
 
 vim.opt.mousemoveevent = true
+
+vim.opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize" }
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
