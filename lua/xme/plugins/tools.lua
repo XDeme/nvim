@@ -14,6 +14,7 @@ return {
 		config = function()
 			local cmake = require("cmake-kits")
 			local cmds = require("cmake-kits.commands")
+			local project = require("cmake-kits.project")
 			cmake.setup({
 				configure_on_open = true,
 				configure_on_save = true,
@@ -25,8 +26,13 @@ return {
 				end,
 			})
 
-			vim.keymap.set({ "i", "n" }, "<C-F5>", function()
+			vim.keymap.set("n", "<C-F5>", function()
 				cmds.quick_run()
+			end)
+			vim.keymap.set("n", "<C-F6>", function()
+				if project.has_ctest() then
+					cmds.test()
+				end
 			end)
 		end,
 	},
