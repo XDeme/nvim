@@ -1,5 +1,4 @@
 local icons = require("xme.icons")
-
 return {
 	{
 		"nvim-neo-tree/neo-tree.nvim",
@@ -134,18 +133,28 @@ return {
 			})
 		end,
 	},
+
 	{
 		"nvim-lualine/lualine.nvim",
 		config = function()
 			local lualine = require("lualine")
+			local project = require("cmake-kits.project")
+			local cmds = require("cmake-kits.commands")
+			local kits = require("cmake-kits.kits")
 			lualine.setup({
 				options = {
 					theme = "auto",
 					globalstatus = true,
 				},
+				sections = {
+					lualine_b = { "branch", "diff", "diagnostics" },
+					lualine_c = require("xme.config.lualine.components.cmake-kits"),
+					lualine_z = { "location" },
+				},
 			})
 		end,
 	},
+
 	{
 		"stevearc/dressing.nvim",
 		version = false,
@@ -154,6 +163,7 @@ return {
 			dressing.setup({})
 		end,
 	},
+
 	{
 		"rcarriga/nvim-notify",
 		config = function()

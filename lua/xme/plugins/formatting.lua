@@ -48,7 +48,7 @@ return {
 
 			vim.keymap.set("n", "<leader>lf", function()
 				require("conform").format({ async = true })
-			end)
+			end, { desc = "format" })
 		end,
 	},
 }

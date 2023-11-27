@@ -42,6 +42,8 @@ return {
 				["<leader>g"] = "Git",
 				["<leader>q"] = "Session",
 				["<leader>f"] = "Find",
+				["<leader>l"] = "Lsp",
+				["g"] = "Goto",
 				["<C-s>"] = "Save file",
 			}
 			which.register(keymaps)
