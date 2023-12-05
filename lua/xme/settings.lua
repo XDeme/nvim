@@ -10,7 +10,7 @@ vim.opt.softtabstop = 4
 
 vim.opt.cursorline = true
 vim.opt.relativenumber = true
-
+vim.opt.scrolloff = 8
 vim.opt.swapfile = false
 
 vim.opt.termguicolors = true
@@ -19,8 +19,6 @@ vim.opt.completeopt = "menu,menuone,noselect"
 vim.opt.cmdheight = 0
 
 vim.opt.updatetime = 50
-
-vim.opt.scrolloff = 8
 
 if version.minor >= 10 then
 	vim.opt.smoothscroll = true

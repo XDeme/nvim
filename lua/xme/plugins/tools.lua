@@ -5,7 +5,7 @@ return {
 		config = function()
 			local toggleterm = require("toggleterm")
 			toggleterm.setup({
-				open_mapping = [[<C-t>]],
+				open_mapping = "<C-t>",
 			})
 		end,
 	},
@@ -18,12 +18,6 @@ return {
 			cmake.setup({
 				configure_on_open = true,
 				configure_on_save = true,
-				auto_root = true,
-				on_root_change = function(dir)
-					if dir then
-						vim.api.nvim_set_current_dir(dir)
-					end
-				end,
 			})
 
 			vim.keymap.set("n", "<C-F5>", function()

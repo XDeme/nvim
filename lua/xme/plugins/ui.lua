@@ -1,4 +1,5 @@
 local icons = require("xme.icons")
+
 return {
 	{
 		"nvim-neo-tree/neo-tree.nvim",
@@ -83,7 +84,7 @@ return {
 	},
 	{
 		"akinsho/bufferline.nvim",
-		event = { "BufReadPost", "BufNewFile" },
+		event = { "BufReadPre", "BufNewFile" },
 		dependencies = {
 			{
 				"moll/vim-bbye",
@@ -92,7 +93,7 @@ return {
 		},
 		config = function()
 			local bufferline = require("bufferline")
-			vim.keymap.set("n", "<leader>d", "<cmd>Bdelete!<CR>")
+			vim.keymap.set("n", "<A-d>", "<cmd>Bdelete!<CR>")
 			vim.keymap.set("n", "<A-Left>", "<cmd>BufferLineCyclePrev<CR>")
 			vim.keymap.set("n", "<A-Right>", "<cmd>BufferLineCycleNext<CR>")
 			vim.keymap.set("n", "<A-1>", "<cmd>BufferLineGoToBuffer 1<CR>")
@@ -126,7 +127,7 @@ return {
 					},
 					hover = {
 						enabled = true,
-						delay = 200,
+						delay = 0,
 						reveal = { "close" },
 					},
 				},
@@ -138,9 +139,6 @@ return {
 		"nvim-lualine/lualine.nvim",
 		config = function()
 			local lualine = require("lualine")
-			local project = require("cmake-kits.project")
-			local cmds = require("cmake-kits.commands")
-			local kits = require("cmake-kits.kits")
 			lualine.setup({
 				options = {
 					theme = "auto",
@@ -158,10 +156,6 @@ return {
 	{
 		"stevearc/dressing.nvim",
 		version = false,
-		config = function()
-			local dressing = require("dressing")
-			dressing.setup({})
-		end,
 	},
 
 	{

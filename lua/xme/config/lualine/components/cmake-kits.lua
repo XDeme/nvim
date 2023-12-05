@@ -1,5 +1,6 @@
 local project = require("cmake-kits.project")
 local cmds = require("cmake-kits.commands")
+local picker = require("cmake-kits.pickers")
 
 local is_cmake_project = function()
 	return project.root_dir ~= nil
@@ -8,7 +9,7 @@ end
 return {
 	{
 		function()
-			return "Build Type " .. "[" .. project.build_type .. "]"
+			return "Build Type " .. "[" .. project.get_build_type() .. "]"
 		end,
 		cond = is_cmake_project,
 		separator = {
@@ -16,14 +17,15 @@ return {
 			right = "|",
 		},
 		on_click = function()
-			project.select_build_type(cmds.configure)
+			picker.select_build_type(cmds.configure)
 		end,
 	},
 	{
 		function()
 			local name = "Unspecified"
-			if type(project.selected_kit) == "table" then
-				name = project.selected_kit.name
+			local kit = project.get_selected_kit()
+			if type(kit) == "table" then
+				name = kit.name
 			end
 			return "[" .. name .. "]"
 		end,
@@ -33,7 +35,7 @@ return {
 			right = "",
 		},
 		on_click = function()
-			project.select_kit(cmds.configure)
+			picker.select_kit(cmds.configure)
 		end,
 	},
 	{
@@ -50,14 +52,15 @@ return {
 			right = 0,
 		},
 		on_click = function()
-			cmds.quick_build()
+			cmds.build(true, {})
 		end,
 	},
 	{
 		function()
 			local target = "null"
-			if project.selected_build then
-				target = project.selected_build.name
+			local build = project.get_selected_build()
+			if build then
+				target = build.name
 			end
 			return "[" .. target .. "]"
 		end,
@@ -67,7 +70,7 @@ return {
 			right = "",
 		},
 		on_click = function()
-			project.select_build_target()
+			picker.select_build_target()
 		end,
 	},
 	{
@@ -84,14 +87,15 @@ return {
 			right = 0,
 		},
 		on_click = function()
-			cmds.quick_run()
+			cmds.run(true, {})
 		end,
 	},
 	{
 		function()
 			local target = "null"
-			if project.selected_runnable then
-				target = project.selected_runnable.name
+			local runnable = project.get_selected_runnable()
+			if runnable then
+				target = runnable.name
 			end
 			return "[" .. target .. "]"
 		end,
@@ -101,9 +105,7 @@ return {
 			right = "",
 		},
 		on_click = function()
-			project.select_runnable_target(function()
-				cmds.quick_run()
-			end)
+			cmds.run(false, {})
 		end,
 	},
 	{
