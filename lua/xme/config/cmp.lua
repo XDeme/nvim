@@ -11,6 +11,7 @@ cmp.setup({
 		{ name = "luasnip", priority = 7, max_item_count = 10 },
 		{ name = "path", priority = 7, max_item_count = 8 },
 		{ name = "buffer", priority = 7, keyword_length = 5, max_item_count = 20 },
+		{ name = "nvim_lsp_signature_help" },
 	},
 	snippet = {
 		expand = function(args)
@@ -66,7 +67,7 @@ cmp.setup({
 		end,
 	},
 	performance = {
-		max_view_entries = 80,
+		max_view_entries = 100,
 	},
 	experimental = { ghost_text = true },
 	sorting = default.sorting,

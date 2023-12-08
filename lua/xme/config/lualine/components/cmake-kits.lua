@@ -17,7 +17,10 @@ return {
 			right = "|",
 		},
 		on_click = function()
-			picker.select_build_type(cmds.configure)
+			local curr_type = project.state.build_type
+			picker.select_build_type(function(selected)
+				cmds.configure({ fresh = curr_type ~= selected })
+			end)
 		end,
 	},
 	{
@@ -35,7 +38,10 @@ return {
 			right = "",
 		},
 		on_click = function()
-			picker.select_kit(cmds.configure)
+			local curr_kit = project.state.selected_kit
+			picker.select_kit(function(selected)
+				cmds.configure({ fresh = curr_kit ~= selected })
+			end)
 		end,
 	},
 	{

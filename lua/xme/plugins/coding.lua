@@ -10,6 +10,7 @@ return {
 			require("luasnip.loaders.from_snipmate").lazy_load()
 		end,
 	},
+
 	{
 		"hrsh7th/nvim-cmp", -- Completion
 		version = false,
@@ -18,6 +19,7 @@ return {
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-path",
+			"hrsh7th/cmp-nvim-lsp-signature-help",
 			"saadparwaiz1/cmp_luasnip",
 			"roobert/tailwindcss-colorizer-cmp.nvim",
 		},
@@ -26,6 +28,7 @@ return {
 			require("xme.config.cmp")
 		end,
 	},
+
 	{
 		"windwp/nvim-autopairs",
 		event = "InsertEnter",
@@ -33,6 +36,7 @@ return {
 			require("nvim-autopairs").setup({})
 		end,
 	},
+
 	{
 		"numToStr/Comment.nvim",
 		version = false,
