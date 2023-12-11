@@ -18,12 +18,4 @@ return {
 			})
 		end,
 	},
-	{
-		"xiyaowong/transparent.nvim",
-		config = function()
-			local t = require("transparent")
-			t.setup({})
-			t.clear_prefix("NeoTree")
-		end,
-	},
 }
