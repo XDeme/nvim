@@ -16,7 +16,7 @@ vim.opt.swapfile = false
 vim.opt.termguicolors = true
 
 vim.opt.completeopt = "menu,menuone,noselect"
-vim.opt.cmdheight = 0
+vim.opt.cmdheight = 1
 
 vim.opt.updatetime = 50
 

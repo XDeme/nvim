@@ -5,6 +5,7 @@ return {
 			local theme = require("tokyonight")
 			theme.setup({
 				style = "night",
+				-- transparent = true,
 			})
 		end,
 	},
@@ -15,6 +16,14 @@ return {
 			theme.setup({
 				style = "darker",
 			})
+		end,
+	},
+	{
+		"xiyaowong/transparent.nvim",
+		config = function()
+			local t = require("transparent")
+			t.setup({})
+			t.clear_prefix("NeoTree")
 		end,
 	},
 }
